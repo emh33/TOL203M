@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Maríusi pípulagningameistari</title>
+        <link href="styles.css" rel="stylesheet">
+
+        <script id="vertex-shader" type="x-shader/x-vertex">
+        attribute vec4 vPosition;
+        uniform float time;
+
+        void main() {
+    
+            gl_Position = vPosition;
+        }
+        </script>
+        <script id="fragment-shader" type="x-shader/x-fragment">
+           precision mediump float;
+           uniform vec4 rcolor;
+
+           void main() {
+               gl_FragColor = rcolor;
+           }
+        </script>
+        <script type="text/javascript" src="./mario_files/webgl-utils.js"></script>
+        <script type="text/javascript" src="./mario_files/initShaders.js"></script>
+        <script type="text/javascript" src="./mario_files/MV.js"></script>
+        <script type="text/javascript" src="./mario_files/mario.js"></script>
+    </head>
+    <body>
+        <div class="canvas">
+            <canvas id="gl-canvas" width="500" height="500">
+                Oops ... your browser doesn't support the HTML5 canvas element
+            </canvas>
+        </div>
+        <div class="score" id="score-mario"></div>
+    </body>
+</html>

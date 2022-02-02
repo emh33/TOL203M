@@ -1,0 +1,16 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+.canvas {
+  display: flex;
+  justify-content: center;
+}
+
+.score {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
