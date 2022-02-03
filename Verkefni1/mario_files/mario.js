@@ -17,12 +17,13 @@ var bufferGold;
 const colorMario = vec4( 1.0, 0.0, 0.0, 1.0 );
 const colorGround = vec4( 0.0, 1.0, 0.0, 1.0 );
 const colorGold = vec4( 1.0, 1.0, 0.0, 1.0 );
+const colorScore = vec4( 1.0, 1.0, 1.0, 1.0 );
 
 // get local position
 var locColor;
 
 //Mario stuff
-let mario ;
+let mario;
 let isJumping = false;
 let goingLeft = false;
 let falling= false;
@@ -37,6 +38,8 @@ let goldX = Math.random() * (0.9 + 0.9) -0.9;
 let goldY = Math.random() * (0.1 + 0.7) -0.7;
 let goldInGame = true;
 let iniTime;
+let showGold = 6;
+let disappear = 4;
 
 window.onload = function init() {
 
@@ -162,7 +165,6 @@ function render() {
     renderGround();
     renderGold();
 
-
     if (score === 10){
         document.getElementById("score-mario").innerHTML =`ÞÚ VANST LEIKINN !!`;  
     }
@@ -187,25 +189,24 @@ function renderGround(){
 }
 
 function renderGold(){
-    let showGold = 6;
-    let disappear = 4;
-
     if(goldInGame){
         let time = (Date.now() - iniTime)/ 1000;
         if(Math.floor(time)!== 0 && Math.floor(time) % showGold === 0){
             goldInGame = false;
             showGold =  Math.floor(Math.random() * (7 - 3 + 1) + 3);
+            iniTime=Date.now();
         }
 
         gl.bindBuffer( gl.ARRAY_BUFFER, bufferGold);
         gl.vertexAttribPointer(vPosition, 2, gl.FLOAT, false, 0 , 0);
         gl.uniform4fv( locColor, flatten(colorGold));
         gl.drawArrays( gl.TRIANGLES, 0, 6 );
+        
     }
     else{
         // seconds
         let time = (Date.now() - iniTime)/ 1000;
-        if(Math.floor(time) % disappear === 0){    
+        if( Math.floor(time)!== 0 && Math.floor(time) % disappear === 0){   
             goldX = Math.random() * (0.9 + 0.9) -0.9;
             goldY = Math.random() * (0.1 + 0.7) -0.7;
             gold = [
@@ -240,6 +241,7 @@ function collisionGold(){
         if(goldInGame){
             score +=1;
             document.getElementById("score-mario").innerHTML =`Stig : ${score}`;
+            
         }
         goldInGame=false;
     }
@@ -266,7 +268,6 @@ function marioJumping(){
     const maxjump = 0.1;
     const onGround= -0.8;
     let inCanvas=true;
-
 
     // collision canvas
     if (mario[2][0] - dx <= -1 || mario[2][0] + dx >= 1 ){
