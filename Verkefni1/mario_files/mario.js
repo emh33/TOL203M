@@ -16,8 +16,8 @@ var bufferGold;
 // Color on object 
 const colorMario = vec4( 1.0, 0.0, 0.0, 1.0 );
 const colorGround = vec4( 0.0, 1.0, 0.0, 1.0 );
-const colorGold = vec4( 1.0, 1.0, 0.0, 1.0 );
-const colorScore = vec4( 1.0, 1.0, 1.0, 1.0 );
+const colorGold = vec4( 1.0, 0.84, 0.0, 1.0 );
+const colorSuperGold = vec4( 1.0, 0.5, 0.0, 1.0 );
 
 // get local position
 var locColor;
