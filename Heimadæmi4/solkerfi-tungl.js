@@ -191,7 +191,7 @@ function render()
      mvt = mult( mvt, rotateZ( rotPole ));      // yfir póla tunglsins
      mvt = mult( mvt, translate( 1.8, 0.0, 0.0 ) );
      mvt = mult( mvt, rotateZ(90));                 // halli um 90°
-     mvt = mult( mvt, scalem( 0.5, 0.5, 0.5 ) );
+     mvt = mult( mvt, scalem( 0.4, 0.4, 0.4 ) );
      gl.uniformMatrix4fv(matrixLoc, false, flatten(mvt));
      gl.drawArrays( gl.TRIANGLES, 0, numVertices );
 
